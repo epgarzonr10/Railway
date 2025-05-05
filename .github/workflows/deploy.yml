@@ -23,7 +23,7 @@ jobs:
       - run: npm install -g @railway/cli
         name: Install Railway CLI
 
-      - run: railway up --service evaluaciones_db
+      - run: railway up --service hapless-dogs
         name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN}}  railway up
