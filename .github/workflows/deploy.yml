@@ -3,7 +3,7 @@ name: Deploy to Railway
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   deploy:
@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Install dependencies
+        run: npm install  # Instala las dependencias de package.json
 
       - name: Install Railway CLI
         run: npm install -g @railway/cli
