@@ -1,4 +1,4 @@
-name: Deployment Pipeline
+name: Deploy to Railway
 
 on:
   push:
@@ -10,20 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'  
+          node-version: 18
 
-      - run: npm install
-        working-directory: .
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
 
-      - run: npm install -g @railway/cli
-        name: Install Railway CLI
-
-      - run: railway up --service hapless-dogs
-        name: Deploy to Railway
+      - name: Deploy with Railway
+        run: railway up --service hapless-dogs
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN}}  railway up
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
